@@ -1,0 +1,51 @@
+@import "normalize.css";
+@font-face {
+  font-family: GoogleSans;
+  src: url(../../assets/fonts/GoogleSans-Regular.ttf);
+}
+:root {
+  --color-primary: #fb9600;
+  --color-hover-primary: #d47f00;
+  --color-pressed-primary: #ad6800;
+  --color-primary-container: #ffdfc0;
+  --color-hover-primary-container: #edd0b3;
+  --color-pressed-primary-container: #dcc1a6;
+  --color-on-primary-container: #482b01;
+  --color-background: #f4f4f4;
+  --color-on-background: #292929;
+  --color-surface-variant: #e7e0d6;
+  --color-on-surface-variant: #4a453e;
+  --color-surface-variant-outline: #8e867a;
+  --color-tertiary: #7e9c78;
+  --color-on-tertiary-container: #20391b;
+
+  --width: 144rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: GoogleSans;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+}
+
+button,
+input {
+  outline: none;
+  border: none;
+}
+
+a[href] {
+  color: var(--color-on-background);
+  text-decoration: none;
+}
