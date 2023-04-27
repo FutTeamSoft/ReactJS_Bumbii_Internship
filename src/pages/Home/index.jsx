@@ -1,28 +1,35 @@
 import classNames from "classnames/bind";
-import io from "socket.io-client";
-import { useEffect, useState } from "react";
-
+import { useContext, useEffect, useState } from "react";
+import SocketContext from "~/contexts/SocketContext";
 import style from "./Home.module.scss";
 
 const cx = classNames.bind(style);
-const socket = io.connect("http://localhost:3001");
 
 function Home() {
+  const { socket, uid, users } = useContext(SocketContext).SocketState;
   const [message, setMessage] = useState("");
   const [messageReceived, setMessageReceived] = useState("");
   const sendMessage = () => {
     socket.emit("send_message", { message });
   };
-
   useEffect(() => {
-    socket.on("receive_message", (data) => {
-      setMessageReceived(data);
-    });
-    // eslint-disable-next-line
+    if (socket) {
+      socket.on("receive_message", (data) => {
+        setMessageReceived(data.message);
+      });
+    }
   }, [socket]);
-
   return (
     <>
+      <h2>Socket IO Information:</h2>
+      <p>
+        Your user ID: <strong>{uid}</strong>
+        <br />
+        Users online: <strong>{users.length}</strong>
+        <br />
+        Socket ID: <strong>{socket?.id}</strong>
+        <br />
+      </p>
       <input
         placeholder="Mesage..."
         onChange={(event) => {
